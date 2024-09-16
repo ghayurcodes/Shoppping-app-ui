@@ -5,6 +5,7 @@ import 'package:animate_to/animate_to.dart';
 import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:providerstate/screens/shop%20page.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
 import 'package:toastification/toastification.dart';
@@ -214,7 +215,7 @@ class drawer extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(bottom: 40),
             child: drawertile(icon: CupertinoIcons.delete,text:'Exit', ontap: (){
-              Navigator.pop(context);
+              SystemNavigator.pop();
               print('exit..');
             },),
           ),
@@ -239,7 +240,7 @@ class toast{
   ToastificationItem showmsg(String msg, Color c){
     return  toastification.show(
       title: Text(msg,style: TextStyle(fontSize: 18),),
-      autoCloseDuration: const Duration(seconds: 2),
+      autoCloseDuration: const Duration(milliseconds: 1500),
       borderRadius: BorderRadius.circular(25),
       showProgressBar: false,
       showIcon: false,
@@ -257,5 +258,46 @@ class toast{
     );
   }
 
+}
+
+
+ checkout(context){
+  return showDialog(context: context, builder: (context) {
+    return AlertDialog(content: Container(
+      width:MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height*0.1,
+      child: Center(
+        child: Text('Thank You for Shopping!',style:TextStyle(
+          fontSize: 25,
+          color: Colors.black,
+          fontWeight: FontWeight.w700
+        ),),
+      ),
+    ),
+    actions: [
+    Center(
+      child: ElevatedButton(onPressed: () {
+        Navigator.pop(context);
+      }, child: Text('ok'),
+        style: ButtonStyle(
+          backgroundColor: MaterialStateProperty.all(Colors.transparent),
+          side: WidgetStateProperty.all(
+            BorderSide(
+              color: Colors.black.withOpacity(0.2), // Transparent black border
+              width: 2, // Border width
+            ),
+          ),
+          shape: WidgetStateProperty.all(
+            RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10), // Border radius
+            ),
+          ),
+          elevation: WidgetStateProperty.all(1), // Remove any elevation/shadow
+        ),
+      ),
+    ),
+
+    ],
+    backgroundColor:Theme.of(context).colorScheme.surface ,);});
 }
 

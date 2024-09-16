@@ -26,6 +26,12 @@ class data with ChangeNotifier{
     notifyListeners();
   }
 
+  void reset(){
+    cart.clear();
+    notifyListeners();
+  }
+
+
 
 }
 

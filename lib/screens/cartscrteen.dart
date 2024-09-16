@@ -133,25 +133,31 @@ class _cartscreenState extends State<cartscreen> {
                 ):Container();
               },itemCount: value.Names.length,),
             ),
-            Container(
-              width: 250,
-              height: 80,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.inversePrimary.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(25),
-                  boxShadow: [
-                    BoxShadow(
-                        spreadRadius: 0,
-                        blurRadius: 10,
-                        color: Colors.black.withOpacity(0.2)
-                    )
-                  ]
+            GestureDetector(
+              onTap: () {
+                value.reset();
+                checkout(context);
+              },
+              child: Container(
+                width: 250,
+                height: 80,
+                decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.inversePrimary.withOpacity(0.2),
+                    borderRadius: BorderRadius.circular(25),
+                    boxShadow: [
+                      BoxShadow(
+                          spreadRadius: 0,
+                          blurRadius: 10,
+                          color: Colors.black.withOpacity(0.2)
+                      )
+                    ]
+                ),
+                child: Center(child: Text('Checkout!',style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 35,
+                    color: Theme.of(context).colorScheme.inversePrimary
+                ),)),
               ),
-              child: Center(child: Text('Checkout!',style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 35,
-                  color: Theme.of(context).colorScheme.inversePrimary
-              ),)),
             ),
             SizedBox(
               height: 40,
