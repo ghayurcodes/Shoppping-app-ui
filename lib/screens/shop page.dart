@@ -79,6 +79,14 @@ class shoppage extends StatelessWidget {
                           },
                           height_: _height,
                           width_: _width,
+                          onheart:  () {
+                            if (value.wishlist.contains(index)) {
+                              value.remove_wish(index);
+                            } else {
+                              value.add_wishlist(index);
+                            }
+                          },
+                          wishlisted: value.wishlist.contains(index),
                         );
                       },
                       itemCount: value.Names.length,

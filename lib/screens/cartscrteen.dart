@@ -37,14 +37,20 @@ class _cartscreenState extends State<cartscreen> {
       ),
       body:Consumer<data>(builder: (context, value, child) {
         return value.cart.isEmpty?Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text('Empty cart please add items!',style: TextStyle(fontWeight: FontWeight.w200,fontSize: 30,color:  Theme.of(context).colorScheme.primary,)),
-            Text('🙈',style: TextStyle(
-              fontSize: 40
-            ),)
-          ],
+        child: Center(
+          child: Container(
+            width: MediaQuery.of(context).size.width,
+            height:  MediaQuery.of(context).size.height*0.1,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text('Empty cart please add items!',style: TextStyle(fontWeight: FontWeight.w400,fontSize: 20,color:  Theme.of(context).colorScheme.primary,)),
+                Text('🙈',style: TextStyle(
+                  fontSize: 40
+                ),)
+              ],
+            ),
+          ),
         ),
         ) :Column(
           children: [
@@ -136,7 +142,7 @@ class _cartscreenState extends State<cartscreen> {
             GestureDetector(
               onTap: () {
                 value.reset();
-                checkout(context);
+                checkout(context,"Thank You for Shopping!");
               },
               child: Container(
                 width: 250,

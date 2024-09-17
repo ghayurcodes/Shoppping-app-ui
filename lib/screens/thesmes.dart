@@ -6,8 +6,10 @@ import 'package:blurrycontainer/blurrycontainer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 import 'package:providerstate/screens/shop%20page.dart';
 import 'package:flutter_styled_toast/flutter_styled_toast.dart';
+import 'package:providerstate/screens/wishlist.dart';
 import 'package:toastification/toastification.dart';
 import 'cartscrteen.dart';
 
@@ -73,7 +75,7 @@ class drawertile extends StatelessWidget {
 }
 
 
-class iitemshow extends StatelessWidget {
+class iitemshow extends StatefulWidget {
   final name;
   final desc;
   final price;
@@ -81,7 +83,10 @@ class iitemshow extends StatelessWidget {
   final ontap;
   final height_;
   final width_;
-  const iitemshow({super.key,
+  final onheart;
+  bool wishlisted;
+
+   iitemshow({super.key,
     required this.name,
     required this.price,
     required this.image,
@@ -89,8 +94,15 @@ class iitemshow extends StatelessWidget {
     required this.ontap,
     required this .height_,
     required  this.width_,
+    required this.onheart,
+    required this.wishlisted,
   });
 
+  @override
+  State<iitemshow> createState() => _iitemshowState();
+}
+
+class _iitemshowState extends State<iitemshow> {
   @override
   Widget build(BuildContext context) {
     var _animateToController;
@@ -123,28 +135,28 @@ class iitemshow extends StatelessWidget {
               child: BlurryContainer(
                 elevation: 3,
                   color: Colors.white.withOpacity(0.3),
-                  child: Container(child: Image.asset(image,),
+                  child: Container(child: Image.asset(widget.image,),
 
                ),
               padding: EdgeInsets.all(25),
                  borderRadius: BorderRadius.circular(15)
               ),
             ),
-            SizedBox(height: (10/height_)*height_,),
-            Text(name,style: TextStyle(
+            SizedBox(height: (10/widget.height_)*widget.height_,),
+            Text(widget.name,style: TextStyle(
               color: Theme.of(context).colorScheme.secondary,
               fontSize: 30,
               fontWeight: FontWeight.bold
             ),),
-            SizedBox(height: (10/height_)*height_,),
-            Text(desc,style: TextStyle(
+            SizedBox(height: (10/widget.height_)*widget.height_,),
+            Text(widget.desc,style: TextStyle(
                 color: Theme.of(context).colorScheme.surface,
                 fontSize: 15,
                 fontWeight: FontWeight.normal
             ),),
-            SizedBox(height: (20/height_)*height_,),
+            SizedBox(height: (20/widget.height_)*widget.height_,),
             SizedBox(
-              width:(263/width_)*width_,
+              width:(263/widget.width_)*widget.width_,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -154,19 +166,31 @@ class iitemshow extends StatelessWidget {
                       color: Colors.white.withOpacity(0.7),
                        borderRadius: BorderRadius.circular(10)
                     ),
-                    child: Text('\$${price.toString()} ',style: TextStyle(
+                    child: Text('\$${widget.price.toString()} ',style: TextStyle(
                         color: Colors.black,
                         fontSize: 25,
                         fontWeight: FontWeight.bold
                     ),),
                   ),
-                  mybutton(child: Icon(Icons.add), ontap: ontap)
-        
+                  Row(
+                    children: [
+                      Consumer(builder: (context, value, child) {
+                        return widget.wishlisted? mybutton(child: Icon(CupertinoIcons.heart_fill,color: Colors.red,), ontap:widget.onheart): mybutton(child: Icon(CupertinoIcons.heart), ontap:widget.onheart);
+                      },),
+
+                      SizedBox(width: 8,),
+                      mybutton(child: Icon(Icons.add), ontap: widget.ontap),
+
+
+
+                    ],
+                  )
+
                 ],
               ),
             ),
-        
-        
+
+
           ],
         ),
 
@@ -206,10 +230,18 @@ class drawer extends StatelessWidget {
               SizedBox(
                 height: 20,
               ),
+              drawertile(icon: CupertinoIcons.heart,text:'Wishlist', ontap: (){
+                Navigator.pop(context);
+                Navigator.pushReplacement(context, MaterialPageRoute(builder:(context) => wishlist(),));
+              },),
+              SizedBox(
+                height: 20,
+              ),
               drawertile(icon: CupertinoIcons.cart,text:'Cart', ontap: (){
                 Navigator.pop(context);
                 Navigator.pushReplacement(context, MaterialPageRoute(builder:(context) => cartscreen(),));
               },),
+
             ],
           ),
           Padding(
@@ -261,13 +293,13 @@ class toast{
 }
 
 
- checkout(context){
+ checkout(context,msg){
   return showDialog(context: context, builder: (context) {
     return AlertDialog(content: Container(
       width:MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height*0.1,
       child: Center(
-        child: Text('Thank You for Shopping!',style:TextStyle(
+        child: Text(msg,style:TextStyle(
           fontSize: 25,
           color: Colors.black,
           fontWeight: FontWeight.w700
@@ -300,4 +332,5 @@ class toast{
     ],
     backgroundColor:Theme.of(context).colorScheme.surface ,);});
 }
+
 

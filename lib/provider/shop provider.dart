@@ -9,7 +9,7 @@ class data with ChangeNotifier{
   final Images=['assets/images/pngegg.png','assets/images/bag.png','assets/images/toy.png','assets/images/clothes.png'];
 
   List cart=[];
-  List<int> qty=[];
+  List wishlist=[];
 
   get names=>Names;
   get descs=>Desc;
@@ -28,6 +28,20 @@ class data with ChangeNotifier{
 
   void reset(){
     cart.clear();
+    notifyListeners();
+  }
+
+  void remove_wish(int index){
+    wishlist.remove(index);
+    notifyListeners();
+  }
+  void add_wishlist(int index){
+    wishlist.add(index);
+    notifyListeners();
+  }
+
+  void reset_wish(){
+    wishlist.clear();
     notifyListeners();
   }
 
