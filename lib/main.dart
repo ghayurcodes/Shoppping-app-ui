@@ -22,12 +22,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (context) => countprovider()),
-        ChangeNotifierProvider(create: (context) => colorchange(),),
-        ChangeNotifierProvider(create: (context) => like(),),
-        ChangeNotifierProvider(create: (context) => testprov(),),
         ChangeNotifierProvider(create: (context) => data(),)
-
       ],
       child: ToastificationWrapper(
         child: MaterialApp(
