@@ -3,15 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:providerstate/screens/shop%20page.dart';
 import 'package:providerstate/screens/thesmes.dart';
 
-class homeui extends StatefulWidget {
+class homeui extends StatelessWidget {
   const homeui({super.key});
-
-  @override
-  State<homeui> createState() => _homeuiState();
-}
-
-class _homeuiState extends State<homeui> {
-
 
   @override
   Widget build(BuildContext context) {
