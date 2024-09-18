@@ -143,17 +143,30 @@ class _iitemshowState extends State<iitemshow> {
               ),
             ),
             SizedBox(height: (10/widget.height_)*widget.height_,),
-            Text(widget.name,style: TextStyle(
-              color: Theme.of(context).colorScheme.secondary,
-              fontSize: 30,
-              fontWeight: FontWeight.bold
-            ),),
-            SizedBox(height: (10/widget.height_)*widget.height_,),
-            Text(widget.desc,style: TextStyle(
-                color: Theme.of(context).colorScheme.surface,
-                fontSize: 15,
-                fontWeight: FontWeight.normal
-            ),),
+            Container(
+              padding: EdgeInsets.all(5),
+              decoration: BoxDecoration(
+                color: Colors.white.withOpacity(0.6),
+                borderRadius: BorderRadius.circular(10)
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(widget.name,style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 30,
+                    fontWeight: FontWeight.bold
+                  ),),
+                  SizedBox(height: (10/widget.height_)*widget.height_,),
+                  Text(widget.desc,style: TextStyle(
+                      color: Colors.black.withOpacity(1),
+                      fontSize: 15,
+                      fontWeight: FontWeight.normal
+                  ),),
+                ],
+              ),
+            ),
+
             SizedBox(height: (20/widget.height_)*widget.height_,),
             SizedBox(
               width:(263/widget.width_)*widget.width_,
@@ -174,9 +187,7 @@ class _iitemshowState extends State<iitemshow> {
                   ),
                   Row(
                     children: [
-                      Consumer(builder: (context, value, child) {
-                        return widget.wishlisted? mybutton(child: Icon(CupertinoIcons.heart_fill,color: Colors.red,), ontap:widget.onheart): mybutton(child: Icon(CupertinoIcons.heart), ontap:widget.onheart);
-                      },),
+                      widget.wishlisted? mybutton(child: Icon(CupertinoIcons.heart_fill,color: Colors.red,), ontap:widget.onheart): mybutton(child: Icon(CupertinoIcons.heart), ontap:widget.onheart),
 
                       SizedBox(width: 8,),
                       mybutton(child: Icon(Icons.add), ontap: widget.ontap),

@@ -6,14 +6,9 @@ import 'package:providerstate/screens/thesmes.dart';
 
 import '../provider/shop provider.dart';
 
-class cartscreen extends StatefulWidget {
+class cartscreen extends StatelessWidget {
   const cartscreen({super.key});
 
-  @override
-  State<cartscreen> createState() => _cartscreenState();
-}
-
-class _cartscreenState extends State<cartscreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +42,9 @@ class _cartscreenState extends State<cartscreen> {
                 Text('Empty cart please add items!',style: TextStyle(fontWeight: FontWeight.w400,fontSize: 20,color:  Theme.of(context).colorScheme.primary,)),
                 Text('🙈',style: TextStyle(
                   fontSize: 40
-                ),)
+                ),),
+
+
               ],
             ),
           ),
@@ -139,35 +136,36 @@ class _cartscreenState extends State<cartscreen> {
                 ):Container();
               },itemCount: value.Names.length,),
             ),
-            GestureDetector(
-              onTap: () {
-                value.reset();
-                checkout(context,"Thank You for Shopping!");
-              },
-              child: Container(
-                width: 250,
-                height: 80,
-                decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.inversePrimary.withOpacity(0.2),
-                    borderRadius: BorderRadius.circular(25),
-                    boxShadow: [
-                      BoxShadow(
-                          spreadRadius: 0,
-                          blurRadius: 10,
-                          color: Colors.black.withOpacity(0.2)
-                      )
-                    ]
+            Padding(
+              padding: const EdgeInsets.only(bottom: 40),
+              child: GestureDetector(
+                onTap: () {
+                  value.reset();
+                  checkout(context,"Thank You for Shopping!");
+                },
+                child: Container(
+                  width: 250,
+                  height: 80,
+                  decoration: BoxDecoration(
+                      color: Theme.of(context).colorScheme.inversePrimary.withOpacity(0.2),
+                      borderRadius: BorderRadius.circular(25),
+                      boxShadow: [
+                        BoxShadow(
+                            spreadRadius: 3,
+                            blurRadius: 10,
+                            color: Colors.black.withOpacity(0.2)
+                        )
+                      ]
+                  ),
+                  child: Center(child: Text('Checkout!',style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 35,
+                      color: Theme.of(context).colorScheme.inversePrimary
+                  ),)),
                 ),
-                child: Center(child: Text('Checkout!',style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 35,
-                    color: Theme.of(context).colorScheme.inversePrimary
-                ),)),
               ),
             ),
-            SizedBox(
-              height: 40,
-            )
+
           ],
         );
       },)

@@ -16,6 +16,7 @@ class shoppage extends StatelessWidget {
         var _height = constraints.maxHeight;
         var _width = constraints.maxWidth;
 
+
         return Scaffold(
           backgroundColor: Theme.of(context).colorScheme.surface,
           appBar: AppBar(

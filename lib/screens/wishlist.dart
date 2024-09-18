@@ -142,36 +142,37 @@ class _wishlistState extends State<wishlist> {
       },itemCount: value.Names.length,);
     },),
     ),
-    Expanded(
+    Padding(
+      padding: const EdgeInsets.only(bottom: 40),
+      child: GestureDetector(
+        onTap: () {
+          cartprovider.reset_wish();
+          checkout(context,"All cleared😄");
+          setState(() {
 
-    child: GestureDetector(
-      onTap: () {
-        cartprovider.reset_wish();
-        checkout(context,"All cleared😄");
-        setState(() {
-
-        });
-      },
-      child: Container(
-        margin: EdgeInsets.all(10),
-        decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.inversePrimary.withOpacity(0.2),
-            borderRadius: BorderRadius.circular(25),
-            boxShadow: [
-              BoxShadow(
-                  spreadRadius: 0,
-                  blurRadius: 10,
-                  color: Colors.black.withOpacity(0.2)
-              )
-            ]
+          });
+        },
+        child: Container(
+          width: 250,
+          height: 80,
+          decoration: BoxDecoration(
+              color: Theme.of(context).colorScheme.inversePrimary.withOpacity(0.2),
+              borderRadius: BorderRadius.circular(25),
+              boxShadow: [
+                BoxShadow(
+                    spreadRadius: 3,
+                    blurRadius: 10,
+                    color: Colors.black.withOpacity(0.2)
+                )
+              ]
+          ),
+          child: Center(child: Text('Remove all!',style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 35,
+              color: Theme.of(context).colorScheme.inversePrimary
+          ),)),
         ),
-        child: Center(child: Text('Remove all!',style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 35,
-            color: Theme.of(context).colorScheme.inversePrimary
-        ),)),
       ),
-    ),
     )
     ],
     ),
