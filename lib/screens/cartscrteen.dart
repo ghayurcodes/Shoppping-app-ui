@@ -129,14 +129,15 @@ class cartscreen extends StatelessWidget {
                                 ),
                                 onTap: (){
                                   value.set_visibiility(0.0);
-                                  // value.remove(index);
-                                  // Timer(
-                                  //   Duration(milliseconds: 500),
-                                  //   () {
-                                  //
-                                  //   },
-                                  //
-                                  // );
+
+                                  Timer(
+                                    Duration(milliseconds: 500),
+                                    () {
+                                      value.remove(index);
+                                      value.set_visibiility(1);
+                                    },
+
+                                  );
                                 },
                               ),
                             ),

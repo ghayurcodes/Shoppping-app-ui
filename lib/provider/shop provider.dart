@@ -38,6 +38,7 @@ class data with ChangeNotifier{
   }
   void add_wishlist(int index){
     wishlist.add(index);
+
     notifyListeners();
   }
 
