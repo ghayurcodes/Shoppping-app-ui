@@ -156,8 +156,20 @@ class cartscreen extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 40),
               child: GestureDetector(
                 onTap: () {
-                  value.reset();
-                  checkout(context,"Thank You for Shopping!");
+                  value.set_visibiility(0.0);
+
+                  Timer(
+                    Duration(milliseconds: 300),
+                        () {
+                          value.reset();
+                      value.set_visibiility(1);
+                      checkout(context,"Thank You for Shopping!");
+                    },
+
+                  );
+
+
+
                 },
                 child: Container(
                   width: 250,
