@@ -131,7 +131,7 @@ class cartscreen extends StatelessWidget {
                                   value.set_visibiility(0.0);
 
                                   Timer(
-                                    Duration(milliseconds: 500),
+                                    Duration(milliseconds: 200),
                                     () {
                                       value.remove(index);
                                       value.set_visibiility(1);
