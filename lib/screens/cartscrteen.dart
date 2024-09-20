@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -53,86 +55,99 @@ class cartscreen extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(itemBuilder: (context, index) {
-                return value.cart.contains(index)?Container(
-                  width: MediaQuery.of(context).size.width*0.9,
-                  height: MediaQuery.of(context).size.height*0.1,
-                  margin: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      color: Theme.of(context).colorScheme.secondary,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                            spreadRadius: 1,
-                            blurRadius: 10,
-                            color: Colors.black.withOpacity(0.2)
-                        )
-                      ]
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(children: [
-                        Container(child: Image(image:AssetImage(value.image[index])),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              color: Colors.grey.withOpacity(0.5)
+                return value.cart.contains(index)?AnimatedOpacity(
+                  duration: Duration(milliseconds: 500),
+                  opacity: value.cart_oppacity,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width*0.9,
+                    height: MediaQuery.of(context).size.height*0.1,
+
+                    margin: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: Theme.of(context).colorScheme.secondary,
+                        borderRadius: BorderRadius.circular(20),
+                        boxShadow: [
+                          BoxShadow(
+                              spreadRadius: 1,
+                              blurRadius: 10,
+                              color: Colors.black.withOpacity(0.2)
+                          )
+                        ]
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(children: [
+                          Container(child: Image(image:AssetImage(value.image[index])),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                color: Colors.grey.withOpacity(0.5)
+                            ),
+                            margin: EdgeInsets.all(7),
                           ),
-                          margin: EdgeInsets.all(7),
-                        ),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                          Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(value.names[index],style: TextStyle(fontWeight: FontWeight.w600,fontSize: 33,color: Theme.of(context).colorScheme.inversePrimary,)),
+                              Text('\$'+value.prices[index].toString(),style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14,color:  Theme.of(context).colorScheme.primary,))
+
+                            ],
+                          )
+                        ],),
+                        Row(
                           children: [
-                            Text(value.names[index],style: TextStyle(fontWeight: FontWeight.w600,fontSize: 33,color: Theme.of(context).colorScheme.inversePrimary,)),
-                            Text('\$'+value.prices[index].toString(),style: TextStyle(fontWeight: FontWeight.w400,fontSize: 14,color:  Theme.of(context).colorScheme.primary,))
-
-                          ],
-                        )
-                      ],),
-                      Row(
-                        children: [
-                          SizedBox(
-                            width: 75,
-                            child: InputQty(
-                              maxVal: 99,
-                              initVal: 0,
-                              minVal: 0,
-                              steps: 1,
-                              onQtyChanged: (val) {
-                                print(val);
-                              },
-                                decoration: QtyDecorationProps(
-                                    qtyStyle: QtyStyle.classic,
-                                  isBordered: false,
-                                  borderShape: BorderShapeBtn.circle,
+                            SizedBox(
+                              width: 75,
+                              child: InputQty(
+                                maxVal: 99,
+                                initVal: 0,
+                                minVal: 0,
+                                steps: 1,
+                                onQtyChanged: (val) {
+                                  print(val);
+                                },
+                                  decoration: QtyDecorationProps(
+                                      qtyStyle: QtyStyle.classic,
+                                    isBordered: false,
+                                    borderShape: BorderShapeBtn.circle,
 
 
-                                ),
+                                  ),
 
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(right: 10),
-                            child: GestureDetector(
-                              child: Container(child: Icon(Icons.remove,size: 30,),
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: Colors.grey.withOpacity(0.5)
-                                ),
-                                margin: EdgeInsets.all(7),
                               ),
-                              onTap: (){
-                                value.remove(index);
-                              },
                             ),
-                          ),
-                        ],
-                      ),
+                            Padding(
+                              padding: const EdgeInsets.only(right: 10),
+                              child: GestureDetector(
+                                child: Container(child: Icon(Icons.remove,size: 30,),
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: Colors.grey.withOpacity(0.5)
+                                  ),
+                                  margin: EdgeInsets.all(7),
+                                ),
+                                onTap: (){
+                                  value.set_visibiility(0.0);
+                                  // value.remove(index);
+                                  // Timer(
+                                  //   Duration(milliseconds: 500),
+                                  //   () {
+                                  //
+                                  //   },
+                                  //
+                                  // );
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
 
 
-                    ],
+                      ],
+                    ),
+
                   ),
-
                 ):Container();
               },itemCount: value.Names.length,),
             ),

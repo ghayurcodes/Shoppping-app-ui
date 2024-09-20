@@ -7,6 +7,7 @@ class data with ChangeNotifier{
   final Desc=['Ultra comfort','Best for travel','A child must have','Level up your fashion game'];
   final Price=[100,50,20,80];
   final Images=['assets/images/pngegg.png','assets/images/bag.png','assets/images/toy.png','assets/images/clothes.png'];
+  double cart_oppacity=1;
 
   List cart=[];
   List wishlist=[];
@@ -42,6 +43,11 @@ class data with ChangeNotifier{
 
   void reset_wish(){
     wishlist.clear();
+    notifyListeners();
+  }
+
+  void set_visibiility(double d){
+    cart_oppacity=d;
     notifyListeners();
   }
 
