@@ -16,7 +16,6 @@ class shoppage extends StatelessWidget {
         var _height = constraints.maxHeight;
         var _width = constraints.maxWidth;
 
-
         return Scaffold(
           backgroundColor: Theme.of(context).colorScheme.surface,
           appBar: AppBar(
@@ -35,7 +34,7 @@ class shoppage extends StatelessWidget {
               SizedBox(width: 10),
             ],
             backgroundColor:
-            Theme.of(context).colorScheme.inversePrimary.withOpacity(0.5),
+                Theme.of(context).colorScheme.inversePrimary.withOpacity(0.5),
             title: Text(
               'Shop',
               style: TextStyle(
@@ -51,7 +50,7 @@ class shoppage extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Expanded(
-                flex: 4,
+                flex: 7,
                 child: Column(
                   children: [
                     SizedBox(height: _height * 0.03),
@@ -65,37 +64,81 @@ class shoppage extends StatelessWidget {
                     SizedBox(height: _height * 0.06),
                     Expanded(
                       child: Consumer<data>(builder: (context, value, child) {
-                        return PageView.builder(
-                          itemBuilder: (context, index) {
-                            return iitemshow(
-                              name: value.names[index],
-                              price: value.prices[index],
-                              image: value.image[index],
-                              desc: value.descs[index],
-                              ontap: () {
-                                if (value.cart.contains(index)) {
-                                  toast().showmsg('Already Added', Colors.red);
-                                } else {
-                                  toast().showmsg('Item added', Colors.green);
-                                  value.cart.add(index);
-                                }
-                              },
-                              height_: _height,
-                              width_: _width,
-                              onheart: () {
-                                if (value.wishlist.contains(index)) {
-                                  value.remove_wish(index);
-                                } else {
-                                  value.add_wishlist(index);
-                                }
-                              },
-                              wishlisted: value.wishlist.contains(index),
-                            );
-                          },
-                          itemCount: value.names.length,
-                          scrollDirection: Axis.horizontal,
-                          physics: BouncingScrollPhysics(),
-                          controller: PageController(viewportFraction: 0.8),
+                        return Column(
+                          children: [
+                            Expanded(
+                              child: PageView.builder(
+                                itemBuilder: (context, index) {
+                                  return iitemshow(
+                                    name: value.names[index],
+                                    price: value.prices[index],
+                                    image: value.image[index],
+                                    desc: value.descs[index],
+                                    ontap: () {
+                                      if (value.cart.contains(index)) {
+                                        toast()
+                                            .showmsg('Already Added', Colors.red);
+                                      } else {
+                                        toast()
+                                            .showmsg('Item added', Colors.green);
+                                        value.cart.add(index);
+                                      }
+                                    },
+                                    height_: _height,
+                                    width_: _width,
+                                    onheart: () {
+                                      if (value.wishlist.contains(index)) {
+                                        value.remove_wish(index);
+                                      } else {
+                                        value.add_wishlist(index);
+                                      }
+                                    },
+                                    wishlisted: value.wishlist.contains(index),
+                                  );
+                                },
+                                itemCount: value.names.length,
+                                scrollDirection: Axis.horizontal,
+                                physics: BouncingScrollPhysics(),
+                                controller: PageController(viewportFraction: 0.8),
+                              ),
+                            ),
+                            Expanded(
+                              child: PageView.builder(
+                                itemBuilder: (context, index) {
+                                  return iitemshow(
+                                    name: value.names[index],
+                                    price: value.prices[index],
+                                    image: value.image[index],
+                                    desc: value.descs[index],
+                                    ontap: () {
+                                      if (value.cart.contains(index)) {
+                                        toast()
+                                            .showmsg('Already Added', Colors.red);
+                                      } else {
+                                        toast()
+                                            .showmsg('Item added', Colors.green);
+                                        value.cart.add(index);
+                                      }
+                                    },
+                                    height_: _height,
+                                    width_: _width,
+                                    onheart: () {
+                                      if (value.wishlist.contains(index)) {
+                                        value.remove_wish(index);
+                                      } else {
+                                        value.add_wishlist(index);
+                                      }
+                                    },
+                                    wishlisted: value.wishlist.contains(index),
+                                  );
+                                },
+                                itemCount: value.names.length,
+                                scrollDirection: Axis.horizontal,
+                                physics: BouncingScrollPhysics(),
+                                controller: PageController(viewportFraction: 0.8),
+                              ),
+                            )
+                          ],
                         );
                       }),
                     ),

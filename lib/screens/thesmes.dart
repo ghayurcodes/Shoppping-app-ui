@@ -132,6 +132,7 @@ class _iitemshowState extends State<iitemshow> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Expanded(
+        flex: 2,
               child: BlurryContainer(
                 elevation: 3,
                   color: Colors.white.withOpacity(0.3),
@@ -142,64 +143,74 @@ class _iitemshowState extends State<iitemshow> {
                  borderRadius: BorderRadius.circular(15)
               ),
             ),
-            SizedBox(height: (10/widget.height_)*widget.height_,),
-            Container(
-              padding: EdgeInsets.all(5),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.6),
-                borderRadius: BorderRadius.circular(10)
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(widget.name,style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold
-                  ),),
-                  SizedBox(height: (10/widget.height_)*widget.height_,),
-                  Text(widget.desc,style: TextStyle(
-                      color: Colors.black.withOpacity(1),
-                      fontSize: 15,
-                      fontWeight: FontWeight.normal
-                  ),),
-                ],
-              ),
-            ),
-
-            SizedBox(height: (20/widget.height_)*widget.height_,),
-            SizedBox(
-              width:(263/widget.width_)*widget.width_,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Container(
-                    padding: EdgeInsets.all(2),
-                    decoration: BoxDecoration(
-                      color: Colors.white.withOpacity(0.7),
-                       borderRadius: BorderRadius.circular(10)
+            Expanded(
+              child: FittedBox(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(height: 0.01*widget.height_,),
+                    Container(
+                      padding: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                          color: Colors.white.withOpacity(0.6),
+                          borderRadius: BorderRadius.circular(10)
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(widget.name,style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 30,
+                              fontWeight: FontWeight.bold
+                          ),),
+                          SizedBox(height: (10/widget.height_)*widget.height_,),
+                          Text(widget.desc,style: TextStyle(
+                              color: Colors.black.withOpacity(1),
+                              fontSize: 15,
+                              fontWeight: FontWeight.normal
+                          ),),
+                        ],
+                      ),
                     ),
-                    child: Text('\$${widget.price.toString()} ',style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold
-                    ),),
-                  ),
-                  Row(
-                    children: [
-                      widget.wishlisted? mybutton(child: Icon(CupertinoIcons.heart_fill,color: Colors.red,), ontap:widget.onheart): mybutton(child: Icon(CupertinoIcons.heart), ontap:widget.onheart),
+                    SizedBox(height: (20/widget.height_)*widget.height_,),
+                    SizedBox(
+                      width:(263/widget.width_)*widget.width_,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            padding: EdgeInsets.all(2),
+                            decoration: BoxDecoration(
+                                color: Colors.white.withOpacity(0.7),
+                                borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: Text('\$${widget.price.toString()} ',style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 25,
+                                fontWeight: FontWeight.bold
+                            ),),
+                          ),
+                          Row(
+                            children: [
+                              widget.wishlisted? mybutton(child: Icon(CupertinoIcons.heart_fill,color: Colors.red,), ontap:widget.onheart): mybutton(child: Icon(CupertinoIcons.heart), ontap:widget.onheart),
 
-                      SizedBox(width: 8,),
-                      mybutton(child: Icon(Icons.add), ontap: widget.ontap),
+                              SizedBox(width: 8,),
+                              mybutton(child: Icon(Icons.add), ontap: widget.ontap),
 
 
 
-                    ],
-                  )
+                            ],
+                          )
 
-                ],
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
+            )
+            
 
 
           ],
