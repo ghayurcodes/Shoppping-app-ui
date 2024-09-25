@@ -61,7 +61,7 @@ class shoppage extends StatelessWidget {
                         color: Theme.of(context).colorScheme.inversePrimary,
                       ),
                     ),
-                    SizedBox(height: _height * 0.06),
+                    SizedBox(height: _height * 0.03),
                     Expanded(
                       child: Consumer<data>(builder: (context, value, child) {
                         return Column(
